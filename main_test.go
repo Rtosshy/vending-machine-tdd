@@ -16,9 +16,10 @@ func TestPushButton(t *testing.T) {
 }
 
 func TestInsertCoin(t *testing.T) {
-	mock := NewMockButton()
+	mockButtons := NewMockButtons()
+
 	initialBalance := 0
-	v := NewVendingMachine(*mock, initialBalance)
+	v := NewVendingMachine(mockButtons, initialBalance)
 	input := 100
 	v.InsertCoin(input)
 	got := v.GetBalance()
@@ -26,13 +27,12 @@ func TestInsertCoin(t *testing.T) {
 	if got != expected {
 		t.Errorf("got: %v, expected: %v", got, expected)
 	}
-
 }
 
 func TestGetBalance(t *testing.T) {
-	mock := NewMockButton()
+	mockButtons := NewMockButtons()
 	balance := 100
-	v := NewVendingMachine(*mock, balance)
+	v := NewVendingMachine(mockButtons, balance)
 	got := v.GetBalance()
 	expected := 100
 	if got != expected {

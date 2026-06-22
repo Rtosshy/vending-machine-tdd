@@ -4,7 +4,7 @@ func main() {
 }
 
 type VendingMachine struct {
-	buttons map[string]Button
+	buttons map[string]*Button
 	balance int
 }
 
@@ -20,7 +20,7 @@ func (v *VendingMachine) PushButton(name string) error {
 	return nil
 }
 
-func NewVendingMachine(buttons map[string]Button, initialBalance int) *VendingMachine {
+func NewVendingMachine(buttons map[string]*Button, initialBalance int) *VendingMachine {
 	return &VendingMachine{buttons: buttons, balance: initialBalance}
 }
 
