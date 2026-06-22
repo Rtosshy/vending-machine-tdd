@@ -1,5 +1,7 @@
 package main
 
+import "errors"
+
 type VendingMachine struct {
 	buttons map[string]*Button
 	balance int
@@ -13,9 +15,13 @@ func (v *VendingMachine) GetBalance() int {
 	return v.balance
 }
 
-func (v *VendingMachine) SelectButton(name string) error {
-	// button, ok := v.buttons[name]
-	return nil
+func (v *VendingMachine) SelectButton(name string) (*Button, error) {
+	button, ok := v.buttons[name]
+	if !ok {
+		return nil, errors.New("invalid button selected")
+	}
+
+	return button, nil
 }
 
 func (v *VendingMachine) Payment(price int) error {
